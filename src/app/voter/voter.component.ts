@@ -66,9 +66,6 @@ export class VoterComponent {
           this.registrationForm.reset();
         },
         (error) => {
-          // alert('Registration failed! Please try again.');
-          console.error('Registration failed!', error);
-          console.log(error);
           if (error.error && error.error.errors) {
             for (const key of Object.keys(error.error.errors)) {
               const control = this.registrationForm.get(key);

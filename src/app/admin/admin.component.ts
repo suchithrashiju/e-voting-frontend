@@ -14,6 +14,7 @@ import { AdminService } from './admin.service';
 })
 export class AdminComponent {
   loginForm!: FormGroup;
+  serverError: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -38,14 +39,18 @@ export class AdminComponent {
           this.loginForm.reset();
         },
         (error: any) => {
-          alert('Login failed! Please try again.');
-          if (error.error && error.error.errors) {
+          // alert('Login failed! Please try again.');
+          if (error.error && error.error.message) {
+            this.serverError = error.error.message;
+          } else if (error.error && error.error.errors) {
             for (const key of Object.keys(error.error.errors)) {
               const control = this.loginForm.get(key);
               if (control) {
                 control.setErrors({ serverError: error.error.errors[key][0] });
               }
             }
+          } else {
+            this.serverError = 'An unexpected error occurred.';
           }
         }
       );

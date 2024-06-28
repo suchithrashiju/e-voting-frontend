@@ -14,7 +14,7 @@ import { VoterService } from '../../voter.service';
 })
 export class LoginComponent {
   loginForm!: FormGroup;
-
+  serverError: string = '';
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -38,14 +38,17 @@ export class LoginComponent {
           this.loginForm.reset();
         },
         (error) => {
-          // alert('Login failed! Please try again.');
-          if (error.error && error.error.errors) {
+          if (error.error && error.error.message) {
+            this.serverError = error.error.message;
+          } else if (error.error && error.error.errors) {
             for (const key of Object.keys(error.error.errors)) {
               const control = this.loginForm.get(key);
               if (control) {
                 control.setErrors({ serverError: error.error.errors[key][0] });
               }
             }
+          } else {
+            this.serverError = 'An unexpected error occurred.';
           }
         }
       );

@@ -2,7 +2,9 @@
   <h2>Voter Login</h2>
 
   <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()">
-
+    <div *ngIf="serverError" class="text-danger">
+      {{ serverError }}
+    </div>
 
     <div class="form-group">
       <label for="email">Email</label>
