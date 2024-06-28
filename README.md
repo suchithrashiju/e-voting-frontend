@@ -1,4 +1,4 @@
-# Electronic Voting System - Angular Frontend Documentation
+# E-Voting System - Angular Frontend Documentation
 
 This project was generated with Angular CLI version 16.2.14.
 
