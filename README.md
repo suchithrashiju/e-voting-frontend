@@ -27,11 +27,20 @@ This project was generated with Angular CLI version 16.2.14.
 Update environment configuration (environment.ts) with backend API URL
 Update environment configuration for production (environment.prod.ts) with backend API URL
 
+Back end API URL = http://localhost:8000/api
+
 **Usage**
 
 - Access the application at http://localhost:4200 (default Angular port) after starting both backend and frontend servers.
 - Register as a voter, login, and navigate through the voting process.
 - Admins can log in separately to manage elections and view results.
+
+Admin Login:
+Navigate to the admin login.
+Enter your admin credentials to access the dashboard.
+Use the following credentials to log in:
+Email: admin@evoting.com
+Password: eVote#123
 
 ## Development server
 
