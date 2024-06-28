@@ -1,0 +1,61 @@
+<div class="container mt-5">
+  <h2 class="text-center">Vote for Your Candidate</h2>
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+  <div *ngIf="hasVoted" class="alert alert-info">
+    You have already voted. Thank you for your participation!
+  </div>
+
+  <app-aadhar-validate  *ngIf="!aadharValid && !hasVoted"
+        (validAadhar)="aadharValidated($event)"
+      ></app-aadhar-validate>
+
+  <div *ngIf="!hasVoted">
+
+    <div *ngIf="aadharValid && !hasVoted">
+      <form (ngSubmit)="submitVote()" #voteForm="ngForm">
+        <div class="row">
+          <div class="col-md-6 offset-md-3">
+            <div class="card">
+              <div class="card-body">
+                <div *ngFor="let candidate of candidates" class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="selectedCandidate"
+                    [value]="candidate.id"
+                    id="candidate{{ candidate.id }}"
+                    [(ngModel)]="selectedCandidate"
+                    required
+                  />
+                  <label
+                    class="form-check-label"
+                    [for]="'candidate' + candidate.id"
+                  >
+                    <img
+                      [src]="candidate.photo_url"
+                      alt="Candidate Photo"
+                      class="img-thumbnail"
+                      style="max-height: 50px; max-width: 50px"
+                    />
+                    <span>{{ candidate.name }} ({{ candidate.party }})</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="text-center mt-4">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="!voteForm.form.valid"
+              >
+                Submit Vote
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,101 @@
+<div class="container mt-5">
+  <h2>Voter Registration</h2>
+
+  <form [formGroup]="registrationForm" (ngSubmit)="submitRegistrationForm()">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" class="form-control" formControlName="name">
+      <div *ngIf="registrationForm.get('name')?.invalid && registrationForm.get('name')?.touched" class="text-danger">
+        <small>Name is required.</small>
+      </div>
+      <div *ngIf="registrationForm.get('name')?.errors?.['serverError']" class="text-danger">
+        {{ registrationForm.get('name')?.errors?.['serverError'] }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" class="form-control" formControlName="email">
+      <div *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched" class="text-danger">
+        <small>Valid email is required.</small>
+      </div>
+      <div *ngIf="registrationForm.get('email')?.errors?.['serverError']" class="text-danger">
+        {{ registrationForm.get('email')?.errors?.['serverError'] }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" class="form-control" formControlName="password">
+      <div *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched" class="text-danger">
+        <small>Password is required.</small>
+      </div>
+      <div *ngIf="registrationForm.get('password')?.errors?.['serverError']" class="text-danger">
+        {{ registrationForm.get('password')?.errors?.['serverError'] }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Confirm Password</label>
+      <input type="password" id="password_confirmation" class="form-control" formControlName="password_confirmation">
+      <div *ngIf="registrationForm.get('password_confirmation')?.invalid && registrationForm.get('password_confirmation')?.touched" class="text-danger">
+        <small>Confirm Password is required.</small>
+      </div>
+      <div *ngIf="registrationForm.hasError('passwordMismatch')" class="text-danger">
+        Passwords do not match.
+      </div>
+      <div *ngIf="registrationForm.get('password_confirmation')?.errors?.['serverError']" class="text-danger">
+        {{ registrationForm.get('password_confirmation')?.errors?.['serverError'] }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="dob">Date of Birth</label>
+      <input type="date" id="dob" class="form-control" formControlName="dob">
+      <div *ngIf="registrationForm.get('dob')?.invalid && registrationForm.get('dob')?.touched" class="text-danger">
+        <small>Date of Birth is required.</small>
+      </div>
+      <div *ngIf="registrationForm.get('dob')?.errors?.['serverError']" class="text-danger">
+        {{ registrationForm.get('dob')?.errors?.['serverError'] }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="aadhar_no">Aadhar Number</label>
+      <input type="text" id="aadhar_no" class="form-control" formControlName="aadhar_no">
+      <div *ngIf="registrationForm.get('aadhar_no')?.invalid && registrationForm.get('aadhar_no')?.touched" class="text-danger">
+        <small>Aadhar Number is required</small>
+      </div>
+      <div *ngIf="registrationForm.get('aadhar_no')?.errors?.['serverError']" class="text-danger">
+        {{ registrationForm.get('aadhar_no')?.errors?.['serverError'] }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input type="text" id="phone" class="form-control" formControlName="phone">
+      <div *ngIf="registrationForm.get('phone')?.invalid && registrationForm.get('phone')?.touched" class="text-danger">
+        <small>Phone is required and should be 10 digits.</small>
+      </div>
+      <div *ngIf="registrationForm.get('phone')?.errors?.['serverError']" class="text-danger">
+        {{ registrationForm.get('phone')?.errors?.['serverError'] }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="address">Address</label>
+      <textarea id="address" class="form-control" formControlName="address"></textarea>
+      <div *ngIf="registrationForm.get('address')?.invalid && registrationForm.get('address')?.touched" class="text-danger">
+        <small>Address is required.</small>
+      </div>
+      <div *ngIf="registrationForm.get('address')?.errors?.['serverError']" class="text-danger">
+        {{ registrationForm.get('address')?.errors?.['serverError'] }}
+      </div>
+    </div>
+<p>*Please fill all fields to enable the Register Button</p>
+
+
+    <button type="submit" class="btn btn-primary" [disabled]="registrationForm.invalid">Register</button>
+    <button type="reset" class="btn btn-secondary btn-back">Cancel </button>
+  </form>
+</div>

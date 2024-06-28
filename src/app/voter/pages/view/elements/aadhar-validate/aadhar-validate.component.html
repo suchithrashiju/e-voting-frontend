@@ -1,0 +1,31 @@
+<div>
+  <form (ngSubmit)="validateAadhar()" #aadharForm="ngForm">
+    <div class="form-group">
+      <label for="aadharNumber">Aadhar Number</label>
+      <input
+        type="text"
+        class="form-control"
+        id="aadharNumber"
+        name="aadharNumber"
+        [(ngModel)]="aadharNumber"
+        required
+        pattern="[0-9]{12}"
+        minlength="12"
+        maxlength="12"
+        placeholder="Enter your Aadhar number"
+        #aadharNumberInput="ngModel"
+      />
+      <div *ngIf="aadharNumberInput.invalid && (aadharNumberInput.dirty || aadharNumberInput.touched)" class="text-danger">
+        <div *ngIf="aadharNumberInput.errors?.['required']">
+          Aadhar number is required.
+        </div>
+        <div *ngIf="aadharNumberInput.errors?.['pattern']">
+          Aadhar number must be 12 digits numeric.
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary mt-5" [disabled]="!aadharForm.form.valid">
+      Validate Aadhar
+    </button>
+  </form>
+</div>

@@ -1,0 +1,22 @@
+<div class="container">
+  <h2>Our Candidates</h2>
+  <div class="row">
+    <div class="col-lg-4 col-md-6 mb-4" *ngFor="let candidate of candidates">
+      <div class="card h-100">
+        <div class="card-body text-center">
+          <img [src]="candidate.symbol_url" alt="Party Symbol" class="img-fluid rounded-circle" style="max-height: 100px;">
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">{{ candidate.party }}</h4>
+        </div>
+        <div class="card-footer">
+          <img [src]="candidate.photo_url" alt="Candidate Photo" class="img-fluid rounded" style="max-height: 200px;">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ candidate.name }}</h5>
+          <p class="card-text">{{ candidate.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

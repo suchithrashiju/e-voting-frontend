@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="jumbotron text-center" *ngIf="isAdminLoggedIn()">
+    <h1 class="display-4">E-Voting System</h1>
+    <p class="lead">Year: {{ year }}</p>
+    <p class="lead">Welcome to the E-Voting System!</p>
+    <hr class="my-4">
+    <div class="btn-group" role="group" aria-label="Basic example" >
+
+      <button type="button" class="btn btn-info" (click)="navigateTo('candidates')">Candidate Listing</button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="jumbotron text-center" *ngIf="!isAdminLoggedIn()">
+    <h1 class="display-4">E-Voting System</h1>
+    <p class="lead">Year: {{ year }}</p>
+    <p class="lead">{{ isLoggedIn() ? 'Welcome back!' : 'Welcome to the E-Voting System.' }}</p>
+    <p>{{ isLoggedIn() ? 'Please vote for your preferred candidate.' : 'Please register or log in to vote, or view the list of candidates.' }}</p>
+    <hr class="my-4">
+    <div class="btn-group" role="group" aria-label="Basic example" >
+      <div *ngIf="!isVoterLoggedIn()">
+        <button type="button" class="btn btn-primary" (click)="navigateTo('voter')">Voter Registration</button>
+      <button type="reset" class="btn btn-secondary btn-back" (click)="navigateTo('voter/login')">Login</button>
+      </div>
+      <div *ngIf="isVoterLoggedIn()">
+        <button type="button" class="btn btn-primary" (click)="navigateTo('voter/vote')">E-Vote</button>
+      </div>
+      <button type="button" class="btn btn-info" (click)="navigateTo('candidates')">Candidate Listing</button>
+    </div>
+  </div>
+</div>
